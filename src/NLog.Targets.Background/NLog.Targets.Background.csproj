@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net6.0;netstandard2.0</TargetFrameworks>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <LangVersion>latest</LangVersion>
+        <RootNamespace>NLog.Targets.Wrappers</RootNamespace>
+        <PackageId>NLog.Targets.Background</PackageId>
+        <Version>0.0.1</Version>
+        <PackageVersion>0.0.1</PackageVersion>
+
+        <AssemblyOriginatorKeyFile>NLog.snk</AssemblyOriginatorKeyFile>
+        <SignAssembly>true</SignAssembly>
+
+        <PackageTags>nlog;async;background;disruptor</PackageTags>
+        <PackageProjectUrl>https://github.com/epeshk/nlog-targets-background</PackageProjectUrl>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/epeshk/nlog-targets-background</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <RootNamespace>NLog.Targets.Wrappers</RootNamespace>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <EnableSourceLink Condition="'$(EnableSourceLink)' == ''">false</EnableSourceLink>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageDescription>An asynchronous wrapper for other NLog targets, based on disruptor-net.</PackageDescription>
+
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="NLog" Version="5.2.5" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+        <PackageReference Include="System.Memory" Version="4.5.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="..\Common\Disruptor\**" LinkBase="Disruptor\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="..\..\..\serilog-sinks-background\src\BackgroundLogger\Disruptor\**" LinkBase="Disruptor\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="..\..\README.md" Pack="true" PackagePath=""/>
+    </ItemGroup>
+</Project>
